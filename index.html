@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termicide | Premium Pest & Termite Management</title>
+    
+    <!-- Google Fonts: Inter for a clean, modern, premium look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#065F46', /* Deep Premium Green */
+                            light: '#059669', /* Vibrant Accent Green */
+                            dark: '#0f172a',  /* Charcoal / Black */
+                            gray: '#f8fafc',  /* Off-white background */
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 40px -10px rgba(6, 95, 70, 0.15)',
+                        'card': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'ai': '0 0 20px 0 rgba(5, 150, 105, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom CSS & Animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* AI Glassmorphism Card */
+        .glass-ai {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(5, 150, 105, 0.3);
+        }
+
+        /* Hero Overlay Gradient */
+        .hero-gradient {
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.7) 50%, rgba(15, 23, 42, 0.3) 100%);
+        }
+
+        /* Image hover zoom effect */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom {
+            transition: transform 0.7s ease;
+        }
+        .group:hover .img-zoom {
+            transform: scale(1.05);
+        }
+
+        /* Custom Bullet Points */
+        .custom-bullet li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        .custom-bullet li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #059669;
+        }
+
+        /* Loader */
+        .loader {
+            border: 3px solid rgba(5, 150, 105, 0.2);
+            border-bottom-color: #059669;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tabs styling */
+        .ai-tab.active {
+            border-bottom: 2px solid #059669;
+            color: #059669;
+            font-weight: 600;
+        }
+        .ai-tab-content {
+            display: none;
+        }
+        .ai-tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .markdown-body ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .markdown-body p { margin-bottom: 1rem; }
+        .markdown-body strong { color: #0f172a; }
+    </style>
+</head>
+<body class="bg-white antialiased">
+
+    <!-- 1. TOP BAR -->
+    <div class="bg-brand-dark text-white text-xs sm:text-sm py-2 px-4 sm:px-8 w-full z-50 relative">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center text-gray-300">
+                    <i class="fa-solid fa-shield-halved text-brand-light mr-2"></i>
+                    20+ Years Experience in Pest Management
+                </span>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="tel:1800737843" class="font-bold hover:text-brand-light transition duration-300 flex items-center">
+                    <i class="fa-solid fa-phone mr-2"></i> 1800 PESTIE
+                </a>
+                <div class="hidden sm:flex space-x-4">
+                    <a href="#book" class="hover:text-brand-light transition duration-300">Book Appointment</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#pay" class="hover:text-brand-light transition duration-300">Pay Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. HEADER / NAVBAR -->
+    <header class="glass-nav sticky top-0 w-full z-40 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center group">
+                <div class="w-10 h-10 bg-brand-green text-white rounded-lg flex items-center justify-center text-xl mr-3 group-hover:bg-brand-light transition duration-300">
+                    <i class="fa-solid fa-bug-slash"></i>
+                </div>
+                <span class="text-2xl font-bold text-brand-dark tracking-tight">Termicide<span class="text-brand-green">.</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-8">
+                <a href="#" class="text-sm font-semibold text-brand-dark hover:text-brand-green transition duration-300">Home</a>
+                <a href="#about" class="text-sm font-semibold text-gray-500 hover:text-brand-green transition duration-300">About</a>
+                <a href="#services" class="text-sm font-semibold text-gray-500 hover:text-brand-green transition duration-300">Services</a>
+                <a href="#ai-assistant" class="text-sm font-semibold text-brand-light hover:text-brand-green transition duration-300 flex items-center gap-1">✨ AI Diagnosis</a>
+                <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-brand-green transition duration-300">Contact</a>
+            </nav>
+
+            <!-- CTA & Mobile Toggle -->
+            <div class="flex items-center space-x-4">
+                <a href="#contact" class="hidden md:inline-block bg-brand-green hover:bg-brand-dark text-white text-sm font-bold py-3 px-6 rounded-md transition duration-300 shadow-md">
+                    Get Free Inspection
+                </a>
+                <button id="mobile-menu-btn" class="lg:hidden text-brand-dark text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col">
+                <a href="#" class="block px-3 py-3 text-base font-medium text-brand-dark border-b border-gray-50">Home</a>
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-600 border-b border-gray-50">About</a>
+                <a href="#services" class="block px-3 py-3 text-base font-medium text-gray-600 border-b border-gray-50">Services</a>
+                <a href="#ai-assistant" class="block px-3 py-3 text-base font-medium text-brand-light border-b border-gray-50">✨ AI Diagnosis</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-medium text-gray-600 border-b border-gray-50">Contact</a>
+                <a href="#contact" class="block mt-4 text-center bg-brand-green text-white text-base font-bold py-3 px-6 rounded-md">Get Free Inspection</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. HERO SECTION -->
+    <section class="relative h-[80vh] min-h-[600px] flex items-center">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Pest Control Technician inspecting home" class="w-full h-full object-cover object-center" />
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10 w-full">
+            <div class="max-w-3xl reveal">
+                <div class="inline-block bg-brand-green/20 border border-brand-light/30 backdrop-blur-sm text-brand-light font-semibold px-4 py-1.5 rounded-full text-sm mb-6">
+                    <i class="fa-solid fa-award mr-2"></i> Queensland's #1 Pest Experts
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Protect Your Property from <span class="text-brand-light">Termites & Pests</span> — Professionally.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl font-light leading-relaxed">
+                    Trusted pest management experts with 20+ years of experience protecting homes and businesses across Queensland.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                    <a href="#contact" class="bg-brand-green hover:bg-brand-light text-white font-bold py-4 px-8 rounded-md text-center transition duration-300 text-lg flex items-center justify-center group">
+                        Get Free Quote <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="tel:1800737843" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold py-4 px-8 rounded-md text-center transition duration-300 text-lg flex items-center justify-center">
+                        <i class="fa-solid fa-phone-volume mr-2"></i> Call Now
+                    </a>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-white/10">
+                    <div class="flex items-center text-gray-300">
+                        <i class="fa-solid fa-clock-rotate-left text-brand-light text-2xl mr-3"></i>
+                        <span class="text-sm font-medium">20+ Years<br>Experience</span>
+                    </div>
+                    <div class="flex items-center text-gray-300">
+                        <i class="fa-solid fa-file-contract text-brand-light text-2xl mr-3"></i>
+                        <span class="text-sm font-medium">Licensed &<br>Insured</span>
+                    </div>
+                    <div class="flex items-center text-gray-300 hidden md:flex">
+                        <i class="fa-solid fa-house-chimney text-brand-light text-2xl mr-3"></i>
+                        <span class="text-sm font-medium">Residential &<br>Commercial</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SERVICES SECTION -->
+    <section id="services" class="py-24 bg-brand-gray relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <h2 class="text-brand-green font-bold tracking-wider uppercase text-sm mb-2">Our Expertise</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-4">Comprehensive Pest Solutions</h3>
+                <p class="text-gray-600">Tailored treatments to protect your property, ensuring a safe and pest-free environment for your family or business.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Cards (Same as before) -->
+                <div class="bg-white rounded-xl p-8 shadow-card hover:shadow-premium transition-all duration-300 group border-b-4 border-transparent hover:border-brand-green reveal">
+                    <div class="w-14 h-14 bg-brand-gray rounded-lg flex items-center justify-center text-3xl text-brand-green mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-bug"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">Termite Management</h4>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">Advanced termite inspections, localized treatments, and long-term chemical barriers.</p>
+                    <a href="#contact" class="text-brand-green font-bold text-sm hover:text-brand-dark flex items-center transition-colors">
+                        Learn More <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-card hover:shadow-premium transition-all duration-300 group border-b-4 border-transparent hover:border-brand-green reveal reveal-delay-1">
+                    <div class="w-14 h-14 bg-brand-gray rounded-lg flex items-center justify-center text-3xl text-brand-green mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-spider"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">General Pest Control</h4>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">Effective eradication of ants, spiders, cockroaches, rodents, and seasonal pests.</p>
+                    <a href="#contact" class="text-brand-green font-bold text-sm hover:text-brand-dark flex items-center transition-colors">
+                        Learn More <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-card hover:shadow-premium transition-all duration-300 group border-b-4 border-transparent hover:border-brand-green reveal reveal-delay-2">
+                    <div class="w-14 h-14 bg-brand-gray rounded-lg flex items-center justify-center text-3xl text-brand-green mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">Pre-Purchase Inspections</h4>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">Comprehensive timber pest inspections before you buy, ensuring peace of mind.</p>
+                    <a href="#contact" class="text-brand-green font-bold text-sm hover:text-brand-dark flex items-center transition-colors">
+                        Learn More <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-card hover:shadow-premium transition-all duration-300 group border-b-4 border-transparent hover:border-brand-green reveal reveal-delay-3">
+                    <div class="w-14 h-14 bg-brand-gray rounded-lg flex items-center justify-center text-3xl text-brand-green mb-6 group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-dark mb-3">Annual Warranty</h4>
+                    <p class="text-gray-600 text-sm mb-6 leading-relaxed">Ongoing protection programs backed by our robust service guarantee and warranty.</p>
+                    <a href="#contact" class="text-brand-green font-bold text-sm hover:text-brand-dark flex items-center transition-colors">
+                        Learn More <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: ✨ AI PEST DIAGNOSIS & RISK ASSESSMENT -->
+    <section id="ai-assistant" class="py-24 bg-brand-dark relative overflow-hidden">
+        <!-- Background accents -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#059669 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-green rounded-full blur-[100px] opacity-30"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-brand-light rounded-full blur-[120px] opacity-20"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-8 relative z-10">
+            <div class="text-center mb-12 reveal">
+                <div class="inline-flex items-center gap-2 bg-brand-green/20 border border-brand-light/30 text-brand-light px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+                    <span>✨ Powered by Advanced AI</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Not Sure What You're Dealing With?</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto text-lg">Use our AI assistant to instantly identify pests, assess property risks, and get expert recommendations before booking an inspection.</p>
+            </div>
+
+            <!-- AI Tool Container -->
+            <div class="glass-ai rounded-2xl shadow-ai overflow-hidden reveal reveal-delay-1">
+                
+                <!-- Tabs -->
+                <div class="flex border-b border-brand-green/20 bg-white/5">
+                    <button class="ai-tab active flex-1 py-4 px-6 text-center font-medium text-gray-400 hover:text-brand-light transition-colors" data-target="tab-image">
+                        <i class="fa-solid fa-camera mr-2"></i> Identify a Pest or Damage
+                    </button>
+                    <button class="ai-tab flex-1 py-4 px-6 text-center font-medium text-gray-400 hover:text-brand-light transition-colors" data-target="tab-text">
+                        <i class="fa-solid fa-house-crack mr-2"></i> Property Risk Report
+                    </button>
+                </div>
+
+                <div class="p-6 md:p-10 bg-white">
+                    
+                    <!-- Tab 1: Image Identification -->
+                    <div id="tab-image" class="ai-tab-content active">
+                        <div class="flex flex-col md:flex-row gap-8 items-start">
+                            <div class="w-full md:w-1/2 space-y-4">
+                                <h3 class="text-xl font-bold text-brand-dark">Upload a Photo</h3>
+                                <p class="text-gray-600 text-sm">Found a strange bug or mysterious wood damage? Upload a clear photo, and our AI will identify it and tell you if it's an emergency.</p>
+                                
+                                <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-brand-green hover:bg-brand-gray transition-colors cursor-pointer relative" id="drop-zone">
+                                    <input type="file" id="image-upload" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                    <div id="upload-placeholder">
+                                        <i class="fa-solid fa-cloud-arrow-up text-4xl text-brand-green mb-3"></i>
+                                        <p class="font-medium text-brand-dark">Click to upload or drag and drop</p>
+                                        <p class="text-xs text-gray-500 mt-1">PNG, JPG up to 5MB</p>
+                                    </div>
+                                    <img id="image-preview" class="hidden max-h-48 mx-auto rounded-lg shadow-sm" alt="Preview">
+                                </div>
+                                
+                                <button id="btn-identify" class="w-full bg-brand-green hover:bg-brand-dark text-white font-bold py-3 px-6 rounded-md transition duration-300 shadow-md flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                    ✨ Analyze Image
+                                </button>
+                            </div>
+
+                            <div class="w-full md:w-1/2 bg-brand-gray rounded-xl p-6 border border-gray-100 min-h-[300px] flex flex-col relative">
+                                <h3 class="text-sm font-bold text-brand-green uppercase tracking-wider mb-4 border-b pb-2">AI Assessment Result</h3>
+                                
+                                <!-- Loading State -->
+                                <div id="ai-loading-image" class="hidden absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center rounded-xl">
+                                    <span class="loader w-10 h-10 mb-4"></span>
+                                    <p class="text-brand-green font-medium animate-pulse">✨ AI is analyzing your image...</p>
+                                </div>
+
+                                <!-- Result State -->
+                                <div id="ai-result-image" class="markdown-body text-gray-700 text-sm flex-grow overflow-y-auto">
+                                    <div class="flex items-center justify-center h-full text-gray-400 italic text-center">
+                                        Upload an image and click "Analyze Image" to see your instant assessment here.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Text Risk Report -->
+                    <div id="tab-text" class="ai-tab-content">
+                        <div class="flex flex-col md:flex-row gap-8 items-start">
+                            <div class="w-full md:w-1/2 space-y-4">
+                                <h3 class="text-xl font-bold text-brand-dark">Describe Your Property</h3>
+                                <p class="text-gray-600 text-sm">Tell us about your home (e.g., location, building materials, age, proximity to trees) to get a customized pest vulnerability report.</p>
+                                
+                                <textarea id="property-desc" rows="5" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-green focus:ring-2 focus:ring-brand-green focus:ring-opacity-20 transition-colors outline-none resize-none bg-brand-gray" placeholder="E.g., I live in a 1980s timber-framed house in the Gold Coast hinterland, surrounded by large gum trees. We have a sub-floor and had a small leak in the bathroom recently."></textarea>
+                                
+                                <button id="btn-report" class="w-full bg-brand-dark hover:bg-brand-green text-white font-bold py-3 px-6 rounded-md transition duration-300 shadow-md flex items-center justify-center gap-2">
+                                    ✨ Generate Risk Report
+                                </button>
+                            </div>
+
+                            <div class="w-full md:w-1/2 bg-brand-gray rounded-xl p-6 border border-gray-100 min-h-[300px] flex flex-col relative">
+                                <h3 class="text-sm font-bold text-brand-green uppercase tracking-wider mb-4 border-b pb-2">AI Risk Report</h3>
+                                
+                                <!-- Loading State -->
+                                <div id="ai-loading-text" class="hidden absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center rounded-xl">
+                                    <span class="loader w-10 h-10 mb-4"></span>
+                                    <p class="text-brand-dark font-medium animate-pulse">✨ Evaluating property risks...</p>
+                                </div>
+
+                                <!-- Result State -->
+                                <div id="ai-result-text" class="markdown-body text-gray-700 text-sm flex-grow overflow-y-auto">
+                                    <div class="flex items-center justify-center h-full text-gray-400 italic text-center">
+                                        Enter your property details and click "Generate" to receive your custom vulnerability assessment.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PROCESS SECTION -->
+    <section class="py-24 bg-white text-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <h2 class="text-brand-green font-bold tracking-wider uppercase text-sm mb-2">How We Work</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold mb-8">Our Proven 5-Step Process</h3>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-brand-green before:to-transparent reveal reveal-delay-1">
+                
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-brand-green text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg relative z-10">1</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-5 rounded-xl bg-brand-gray border border-gray-200 hover:border-brand-green transition-colors shadow-sm">
+                        <h4 class="font-bold text-brand-dark mb-1">Book Inspection</h4>
+                        <p class="text-sm text-gray-600">Schedule a convenient time for our experts to visit.</p>
+                    </div>
+                </div>
+                
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-brand-green text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg relative z-10">2</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-5 rounded-xl bg-brand-gray border border-gray-200 hover:border-brand-green transition-colors shadow-sm">
+                        <h4 class="font-bold text-brand-dark mb-1">Property Assessment</h4>
+                        <p class="text-sm text-gray-600">Thorough interior, exterior, and sub-floor inspection.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-brand-green text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg relative z-10">3</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-5 rounded-xl bg-brand-gray border border-gray-200 hover:border-brand-green transition-colors shadow-sm">
+                        <h4 class="font-bold text-brand-dark mb-1">Treatment Plan</h4>
+                        <p class="text-sm text-gray-600">Customized, transparent proposal outlining solutions.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-brand-green text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg relative z-10">4</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-5 rounded-xl bg-brand-gray border border-gray-200 hover:border-brand-green transition-colors shadow-sm">
+                        <h4 class="font-bold text-brand-dark mb-1">Execution</h4>
+                        <p class="text-sm text-gray-600">Safe, professional application of treatments/barriers.</p>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-brand-green text-white font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg relative z-10">5</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-5 rounded-xl bg-brand-gray border border-gray-200 hover:border-brand-green transition-colors shadow-sm">
+                        <h4 class="font-bold text-brand-dark mb-1">Ongoing Protection</h4>
+                        <p class="text-sm text-gray-600">Annual check-ups and warranty management.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. STRONG CTA SECTION -->
+    <section class="py-20 bg-brand-green relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-10"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-brand-dark opacity-10"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 reveal">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Don’t Let Termites Damage Your Investment.</h2>
+            <p class="text-brand-gray/80 text-lg mb-10 max-w-2xl mx-auto">Early detection and preventative barriers are the only way to ensure your property remains safe. Act before the damage is done.</p>
+            <a href="#contact" class="inline-block bg-white text-brand-green hover:bg-brand-dark hover:text-white font-bold text-lg py-4 px-10 rounded-md transition duration-300 shadow-xl">
+                Book Your Inspection Today
+            </a>
+        </div>
+    </section>
+
+    <!-- 7. CONTACT SECTION -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div class="reveal">
+                    <h2 class="text-brand-green font-bold tracking-wider uppercase text-sm mb-2">Get In Touch</h2>
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-8">Ready for a Pest-Free Property?</h3>
+                    <p class="text-gray-600 mb-10">Contact our friendly team today to schedule an inspection, discuss treatment options, or ask about our warranty programs.</p>
+
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="w-14 h-14 bg-brand-gray rounded-xl flex items-center justify-center text-brand-green text-2xl shrink-0 mr-5 shadow-sm">
+                                <i class="fa-solid fa-phone-volume"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-medium mb-1">Call Us (Toll Free)</p>
+                                <a href="tel:1800737843" class="text-2xl font-bold text-brand-dark hover:text-brand-green transition">1800 PESTIE</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-14 h-14 bg-brand-gray rounded-xl flex items-center justify-center text-brand-green text-2xl shrink-0 mr-5 shadow-sm">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-medium mb-1">Email Us</p>
+                                <a href="mailto:info@termicide.com.au" class="text-xl font-bold text-brand-dark hover:text-brand-green transition">info@termicide.com.au</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white p-8 md:p-10 rounded-2xl shadow-premium border border-gray-100 reveal reveal-delay-1">
+                    <h4 class="text-2xl font-bold text-brand-dark mb-6">Request a Callback</h4>
+                    <form action="#" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                <input type="text" id="firstName" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-brand-green outline-none" placeholder="John">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                <input type="text" id="lastName" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-brand-green outline-none" placeholder="Doe">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-brand-green outline-none" placeholder="0400 000 000">
+                            </div>
+                            <div>
+                                <label for="service" class="block text-sm font-medium text-gray-700 mb-2">Service</label>
+                                <select id="service" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-brand-green outline-none bg-white">
+                                    <option>Termite Inspection</option>
+                                    <option>General Pest Control</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-brand-green outline-none resize-none"></textarea>
+                        </div>
+
+                        <button type="button" class="w-full bg-brand-dark hover:bg-brand-green text-white font-bold py-4 rounded-md transition duration-300 shadow-md">
+                            Submit Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark pt-12 pb-6 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+             <span class="text-2xl font-bold text-white tracking-tight">Termicide<span class="text-brand-green">.</span></span>
+             <p class="text-gray-500 text-sm mt-4">&copy; <span id="year"></span> Termicide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts & Gemini API Integration -->
+    <script>
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Reveal Animations
+        document.addEventListener("DOMContentLoaded", () => {
+            const revealElements = document.querySelectorAll(".reveal");
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+            revealElements.forEach(element => revealObserver.observe(element));
+        });
+
+        // AI Tabs Logic
+        const tabs = document.querySelectorAll('.ai-tab');
+        const tabContents = document.querySelectorAll('.ai-tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.target).classList.add('active');
+            });
+        });
+
+        // Image Upload Preview Logic
+        const imageUpload = document.getElementById('image-upload');
+        const imagePreview = document.getElementById('image-preview');
+        const uploadPlaceholder = document.getElementById('upload-placeholder');
+        const btnIdentify = document.getElementById('btn-identify');
+        let currentBase64Image = null;
+        let currentMimeType = null;
+
+        imageUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    uploadPlaceholder.classList.add('hidden');
+                    btnIdentify.removeAttribute('disabled');
+                    
+                    // Extract base64 and mime type for API
+                    const base64String = e.target.result.split(',')[1];
+                    currentBase64Image = base64String;
+                    currentMimeType = file.type;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // --- GEMINI API INTEGRATION ---
+        const apiKey = ""; // API Key provided by execution environment
+        const modelEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+        // Exponential Backoff Fetch
+        async function fetchWithBackoff(url, options, retries = 5) {
+            const delays = [1000, 2000, 4000, 8000, 16000];
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error?.message || `HTTP Error ${response.status}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    if (i === retries - 1) throw error;
+                    await new Promise(res => setTimeout(res, delays[i]));
+                }
+            }
+        }
+
+        // Basic Markdown parser for AI results
+        function parseMarkdown(text) {
+            let html = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            html = html.replace(/\n\*/g, '<br>•');
+            html = html.replace(/\n-/g, '<br>•');
+            html = html.replace(/\n/g, '<br>');
+            return html;
+        }
+
+        // Feature 1: Image Identification
+        btnIdentify.addEventListener('click', async () => {
+            if (!currentBase64Image) return;
+
+            const loadingEl = document.getElementById('ai-loading-image');
+            const resultEl = document.getElementById('ai-result-image');
+            
+            loadingEl.classList.remove('hidden');
+            btnIdentify.setAttribute('disabled', 'true');
+
+            const prompt = `You are a highly experienced pest control and termite management expert in Queensland, Australia (working for Termicide). 
+            Analyze this image. Identify any visible pests, bugs, or signs of structural/wood damage. 
+            Keep your response concise and structured:
+            1. **Identification**: What is it?
+            2. **Threat Level**: Low, Medium, or High (and brief reason why).
+            3. **Recommendation**: Suggest a specific service (e.g., Immediate Termite Inspection, General Pest Spray, Monitor). Do not suggest DIY.`;
+
+            const payload = {
+                contents: [{
+                    parts: [
+                        { text: prompt },
+                        { inlineData: { mimeType: currentMimeType, data: currentBase64Image } }
+                    ]
+                }]
+            };
+
+            try {
+                const data = await fetchWithBackoff(modelEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to analyze image.";
+                
+                resultEl.innerHTML = `
+                    <div class="animate-[fadeIn_0.5s_ease-out]">
+                        ${parseMarkdown(textResponse)}
+                        <div class="mt-6 pt-4 border-t border-brand-green/20">
+                            <a href="#contact" class="text-brand-green font-bold hover:text-brand-dark flex items-center text-sm">
+                                Book an inspection for this issue <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                resultEl.innerHTML = `<div class="text-red-500 bg-red-50 p-3 rounded-lg border border-red-200"><i class="fa-solid fa-circle-exclamation mr-2"></i> Error: ${error.message}. Please try again later.</div>`;
+            } finally {
+                loadingEl.classList.add('hidden');
+                btnIdentify.removeAttribute('disabled');
+            }
+        });
+
+        // Feature 2: Text Risk Report
+        const btnReport = document.getElementById('btn-report');
+        btnReport.addEventListener('click', async () => {
+            const desc = document.getElementById('property-desc').value.trim();
+            if (!desc) {
+                // Flash animation for empty input
+                document.getElementById('property-desc').classList.add('ring-2', 'ring-red-500');
+                setTimeout(() => document.getElementById('property-desc').classList.remove('ring-2', 'ring-red-500'), 1000);
+                return;
+            }
+
+            const loadingEl = document.getElementById('ai-loading-text');
+            const resultEl = document.getElementById('ai-result-text');
+            
+            loadingEl.classList.remove('hidden');
+            btnReport.setAttribute('disabled', 'true');
+
+            const prompt = `You are an expert termite and pest inspector in Queensland, Australia (representing the company Termicide).
+            Based on the following description of a property: "${desc}", provide a professional, concise vulnerability assessment.
+            Format your response strictly as follows:
+            **Primary Risks**: (List 2-3 specific pests or threats based on the age/location/materials).
+            **Vulnerability Factors**: (Why is the property at risk based on the description?).
+            **Termicide Recommendation**: (Recommend exactly one of our services: Termite Barrier, General Pest Control, or Annual Warranty program, and why).`;
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: prompt }]
+                }]
+            };
+
+            try {
+                const data = await fetchWithBackoff(modelEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to generate report.";
+                
+                resultEl.innerHTML = `
+                    <div class="animate-[fadeIn_0.5s_ease-out]">
+                        ${parseMarkdown(textResponse)}
+                        <div class="mt-6 pt-4 border-t border-brand-green/20">
+                            <a href="#contact" class="text-brand-green font-bold hover:text-brand-dark flex items-center text-sm">
+                                Protect your property now <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                resultEl.innerHTML = `<div class="text-red-500 bg-red-50 p-3 rounded-lg border border-red-200"><i class="fa-solid fa-circle-exclamation mr-2"></i> Error: ${error.message}. Please try again later.</div>`;
+            } finally {
+                loadingEl.classList.add('hidden');
+                btnReport.removeAttribute('disabled');
+            }
+        });
+
+    </script>
+</body>
+</html>
